@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider Example</title>
+    <style>
+        .main {
+            text-align: center;
+            font-size: 25px;
+            margin-top: 50px;
+        }
+        .slider-container {
+            margin-top: 20px;
+        }
+        .slider {
+            width: 80%;
+        }
+        .value-display {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>Slider Example</h1>
+        <div class="slider-container">
+            <input type="range" min="0" max="100" value="50" class="slider" id="slider">
+            <div class="value-display">Value: <span id="sliderValue">50</span></div>
+        </div>
+    </div>
+    <script>
+        const slider = document.getElementById('slider');
+        const sliderValue = document.getElementById('sliderValue');
+
+        slider.oninput = function() {
+            sliderValue.textContent = this.value;
+        }
+    </script>
+</body>
+</html>

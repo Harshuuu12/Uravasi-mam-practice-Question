@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <div class="st_date">
+            <label for="Start_date">Enter Start Date : </label>
+            <input type="date" id="sdate">
+        </div>
+        <div class="end_date">
+            <label for="end_date">Enter End Date : </label>
+            <input type="date" id="ldate">
+        </div>
+        <button type="button" onclick="diffrencedate()">Display</button>
+    </form>
+    <h2 id="displaydate"></h2>
+    <h2 id="displaymonth"></h2>
+    <h2 id="displayyears"></h2>
+
+    <script>
+        function diffrencedate(){
+            let Startdate = new Date(document.getElementById('sdate').value);
+            let lastdate = new Date(document.getElementById('ldate').value);
+            let differenceintime = lastdate - Startdate;
+            let displaysdays = differenceintime/(1000*60*60*24)
+
+            let mn = differenceintime / (1000*60*60*24)
+            let displaysmonth = Math.round(mn / 30.5);
+            let displaysyear = Math.round(mn / 365.5); 
+
+            document.getElementById('displaydate').innerText = `Days is ${displaysdays}`;
+            document.getElementById('displaymonth').innerText = `Month is ${displaysmonth}`;
+            document.getElementById('displayyears').innerText = `Years is ${displaysyear}`;
+        }
+    </script>
+</body>
+</html>

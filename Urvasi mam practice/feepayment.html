@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Method</title>
+    <style>
+        input[type="text"] {
+            border: none;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .main {
+            display: flex;
+            justify-content: space-between;
+        }
+        .total_fees, .paid_fees {
+            width: 48%;
+        }
+        .paid_fees label {
+            margin-right: 10px;
+        }
+        #paymentdetails {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Payment Method</h1>
+    <form action="">
+        <label for="name">Enter The Name</label>
+        <br>
+        <input type="text" name="name" id="name">
+        <hr>
+        <div class="main">
+            <div class="total_fees">
+                <label for="total_fees">Total Fees</label>
+                <br>
+                <input type="text" name="total_fees" id="total_fees" oninput="calculateRemainingFees()">
+            </div>
+            <div class="paid_fees">
+                <label for="paid_fees">Paid Fees :</label>
+                <br>
+                <input type="radio" id="cheque" name="payment_method" value="cheque" onchange="seepaymentdetails(this)">
+                <label for="cheque">Cheque</label>
+                <input type="radio" id="online" name="payment_method" value="upi" onchange="seepaymentdetails(this)">
+                <label for="online">Online</label>
+                <input type="radio" id="cash" name="payment_method" value="cash" onchange="seepaymentdetails(this)">
+                <label for="cash">Cash</label>
+            </div>
+        </div>
+        <hr>
+        <div class="remaining_fees">
+            <label for="rem_fees">Remaining Fees :</label>
+            <input type="text" id="rem_fees" readonly>
+        </div>
+        <div id="paymentdetails" oninput="calculateRemainingFees()"></div>
+    </form>
+    <script>
+        function seepaymentdetails(element) {
+            let paymentDetails = document.getElementById('paymentdetails');
+            paymentDetails.style.display = 'block';
+            let details = '';
+            switch (element.value) {
+                case 'cheque':
+                    details = `
+                        <label for="chequeNumber">Cheque No:</label>
+                        <input type="text" id="chequeNumber">
+                        <label for="chequeAmount">Amount:</label>
+                        <input type="text" id="chequeAmount" oninput="calculateRemainingFees()">
+                    `;
+                    break;
+                case 'upi':
+                    details = `
+                        <label for="upiId">UPI ID:</label>
+                        <input type="text" id="upiId">
+                        <label for="upiAmount">Amount:</label>
+                        <input type="text" id="upiAmount" oninput="calculateRemainingFees()">
+                    `;
+                    break;
+                case 'cash':
+                    details = `
+                        <label for="cashAmount">Cash Amount:</label>
+                        <input type="text" id="cashAmount" oninput="calculateRemainingFees()">
+                    `;
+                    break;
+            }
+            paymentDetails.innerHTML = details;
+        }
+
+        function calculateRemainingFees() {
+            let totalFees = parseInt(document.getElementById('total_fees').value) 
+            if (document.getElementById('cheque')) {
+                paidFees = parseInt(document.getElementById('chequeAmount').value);
+            } else if (document.getElementById('online')) {
+                paidFees = parseInt(document.getElementById('upiAmount').value);
+            } else if (document.getElementById('cash')) {
+                paidFees = parseInt(document.getElementById('cashAmount').value);
+            }
+
+            let remainingFees = totalFees - paidFees;
+            document.getElementById('rem_fees').value = remainingFees;
+
+            function showpdf (){
+                le
+            } 
+        }
+    </script>
+</body>
+</html>

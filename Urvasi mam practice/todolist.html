@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            text-align: center;
+        }
+        .main input{
+            padding: 5px 10px;
+        }
+        ul{
+            list-style-type: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>Todo list</h1>
+        <input type="text" id="givelist">
+        <button onclick="add()">Add list</button>
+    </div>
+    <ul id="addlist"></ul>
+    <script>
+        function add(){
+            let addlist = document.getElementById('givelist').value;
+            let createlist = document.createElement('li');
+            createlist.innerText = addlist
+            document.getElementById('addlist').append(createlist);
+
+            let rm = document.createElement('button');
+            rm.innerHTML = '&Cross;';
+            createlist.append(rm);              
+            rm.onclick=()=>{ 
+                createlist.remove();
+            }
+               
+        }
+    </script>
+</body>
+</html>
